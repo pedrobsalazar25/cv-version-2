@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* White Neomorphic Base Colors */
+    --background: 220 20% 91%;
+    --foreground: 220 20% 20%;
+
+    --card: 220 20% 93%;
+    --card-foreground: 220 20% 20%;
+
+    --popover: 220 20% 93%;
+    --popover-foreground: 220 20% 20%;
+
+    /* Dark accent for contrast */
+    --primary: 220 20% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 85%;
+    --secondary-foreground: 220 20% 25%;
+
+    --muted: 220 15% 88%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 220 20% 30%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 85%;
+    --input: 220 20% 88%;
+    --ring: 220 20% 25%;
+
+    --radius: 1.25rem;
+
+    /* White Neomorphic Shadows */
+    --shadow-light: -6px -6px 16px 0px rgba(255, 255, 255, 0.8);
+    --shadow-dark: 6px 6px 16px 0px rgba(174, 174, 192, 0.4);
+    --shadow-inset-light: inset -3px -3px 8px 0px rgba(255, 255, 255, 0.6);
+    --shadow-inset-dark: inset 3px 3px 8px 0px rgba(174, 174, 192, 0.3);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-blur: 20px;
+
+    --sidebar-background: 220 20% 91%;
+    --sidebar-foreground: 220 20% 20%;
+    --sidebar-primary: 220 20% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 93%;
+    --sidebar-accent-foreground: 220 20% 20%;
+    --sidebar-border: 220 15% 85%;
+    --sidebar-ring: 220 20% 25%;
+  }
+
+  .dark {
+    --background: 220 20% 15%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 20% 18%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 20% 18%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 220 15% 75%;
+    --primary-foreground: 220 20% 15%;
+
+    --secondary: 220 15% 25%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 220 15% 22%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 220 15% 80%;
+    --accent-foreground: 220 20% 15%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 20%;
+    --ring: 220 15% 75%;
+
+    --shadow-light: -6px -6px 16px 0px rgba(50, 50, 60, 0.5);
+    --shadow-dark: 6px 6px 16px 0px rgba(0, 0, 0, 0.5);
+    --shadow-inset-light: inset -3px -3px 8px 0px rgba(50, 50, 60, 0.4);
+    --shadow-inset-dark: inset 3px 3px 8px 0px rgba(0, 0, 0, 0.4);
+
+    --glass-bg: rgba(30, 30, 40, 0.4);
+    --glass-border: rgba(60, 60, 80, 0.3);
+
+    --sidebar-background: 220 20% 15%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 220 15% 75%;
+    --sidebar-primary-foreground: 220 20% 15%;
+    --sidebar-accent: 220 20% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 15% 25%;
+    --sidebar-ring: 220 15% 75%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    @apply font-bold;
+  }
+}
+
+@layer components {
+  /* Purple Neomorphic raised element */
+  .neo-raised {
+    background: hsl(var(--card));
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border) / 0.3);
+  }
+
+  /* Purple Neomorphic pressed/inset element */
+  .neo-inset {
+    background: hsl(var(--input));
+    box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border) / 0.2);
+  }
+
+  /* Neomorphic button hover state */
+  .neo-button {
+    @apply neo-raised transition-all duration-200;
+  }
+
+  .neo-button:hover {
+    box-shadow: 
+      -3px -3px 8px 0px rgba(255, 255, 255, 0.9),
+      3px 3px 8px 0px rgba(174, 174, 192, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .neo-button:active {
+    @apply neo-inset;
+    transform: translateY(0);
+  }
+
+  /* Glassmorphism card */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+  }
+
+  /* Neomorphic input */
+  .neo-input {
+    @apply neo-inset px-4 py-3 outline-none w-full transition-all duration-200;
+    background: hsl(var(--input));
+    color: hsl(var(--foreground));
+  }
+
+  .neo-input:focus {
+    box-shadow: 
+      var(--shadow-inset-light), 
+      var(--shadow-inset-dark),
+      0 0 0 2px hsl(var(--primary) / 0.4);
+  }
+
+  .neo-input::placeholder {
+    @apply text-muted-foreground;
+  }
+
+  /* Bento grid item */
+  .bento-item {
+    @apply neo-raised p-6 transition-all duration-300;
+  }
+
+  .bento-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      -8px -8px 20px 0px rgba(255, 255, 255, 0.9),
+      8px 8px 20px 0px rgba(174, 174, 192, 0.5);
+  }
+
+  /* Scrollbar styling */
+  .neo-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .neo-scrollbar::-webkit-scrollbar-track {
+    @apply neo-inset;
+    border-radius: 10px;
+  }
+
+  .neo-scrollbar::-webkit-scrollbar-thumb {
+    @apply neo-raised;
+    border-radius: 10px;
+  }
+
+  /* Section styling */
+  .section-title {
+    @apply text-xl font-bold text-foreground mb-6 uppercase tracking-wider;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Navigation pill buttons */
+  .nav-pill {
+    @apply neo-raised p-3 flex items-center justify-center transition-all duration-200;
+  }
+
+  .nav-pill:hover {
+    @apply bg-primary text-primary-foreground;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .nav-pill.active {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.6);
+  }
+}
